@@ -25,7 +25,7 @@ namespace WebApplication1.Services
 
         public void Send(ClientInfo data)
         {
-            _client.Send("test@mail.com", _configuration.GetValue<string>("RecipientMail"), $"{data.FirstName} {data.LastName} {data.Email}", "testbody");
+            _client.Send(_configuration.GetValue<string>("Smpt:Login"), _configuration.GetValue<string>("RecipientMail"), $"{data.FirstName} {data.LastName} {data.Email}", "testbody");
         }
     }
 }
