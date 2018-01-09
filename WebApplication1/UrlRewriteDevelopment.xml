@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.webServer>
+    <rewrite>
+      <outboundRules>
+        <rule name="Add Cross Origin Access">
+          <match serverVariable="RESPONSE_Access_Control_Allow_Origin" pattern=".*" />
+          <conditions>
+            <add input="{REQUEST_URI}" pattern=".*\.(ttf|otf|eot|woff|woff2|svg|json)$" />
+          </conditions>
+          <action type="Rewrite" value="*"/>
+        </rule>
+      </outboundRules>
+      <rules>
+        <rule name="Rewrite to angular">
+          <match url="(.*)" />
+          <conditions>
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+            <add input="{REQUEST_URI}" pattern="^/Views/(.*)$" negate="true" ignoreCase="true"/>
+          </conditions>
+          <action type="Rewrite" url="index.html" />
+        </rule>
+      </rules>
+    </rewrite>
+  </system.webServer>
+</configuration>

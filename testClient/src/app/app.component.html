@@ -1,0 +1,37 @@
+<div class="d-flex justify-content-center">
+<div class="w-25">
+<form>
+  <div class="form-group">
+    <label for="exampleInput1">First Name</label>
+    <input type="text" class="form-control" id="exampleInput1" [(ngModel)]="data.firstName" name ="name" placeholder="First Name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInput2">Last Name</label>
+    <input type="text" class="form-control" id="exampleInput2" [(ngModel)]="data.lastName" name ="name2" placeholder="Last Name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInput3">Date of Birth</label>
+    <div class="input-group" id="exampleInput3">
+      <input class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="data.dateOfBirth" ngbDatepicker #d="ngbDatepicker" [minDate]="minDate" (ngModelChange)="CheckDate($event)">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+          <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+        </button>
+      </div>
+    </div>
+    <small id="emailHelp" *ngIf="isDateValid" class="form-text text-danger">Only people 18+ years old can submit application.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="data.email" name ="name3" placeholder="Enter email">
+
+  </div>
+
+  <button type="submit" [disabled]="!data.dateOfBirth||isDateValid" class="btn btn-primary" (click)="OnSubmit()">Submit</button>
+</form>
+</div>
+</div>
+
+
+
